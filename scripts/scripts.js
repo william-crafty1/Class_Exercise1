@@ -5,7 +5,12 @@ class BankAccount {
     }
 
     addIntrest() {
-        this.balance = this.balance + this.intrestRate;
+        this.balance += this.balance * (this.intrestRate / 100);
+        return this.balance;
+    }
+
+    makeDeposit(amount){
+        this.balance = this.balance + amount;
         return this.balance;
     }
 }
@@ -22,12 +27,10 @@ class BankAccountWithFee extends BankAccount {
     }
 }
 
-let Account1 = new BankAccount(50.00 , 5.00);
+const Account1 = new BankAccount(25.00, 5.00);
 console.log(`Current balance after adding Intrest Rate: $${Account1.addIntrest()}`);
-Account1 = new BankAccountWithFee(25.00, 50.00, 5.00);
-console.log(`Current Balance after fee: $${Account1.applyFee()}`);
+console.log(`The Balance after depositing: $${Account1.makeDeposit(50)}`)
 
-let Account2 = new BankAccount(9999.99, .99);
-console.log(`Current balance after adding intrest rate: $${Account2.addIntrest()}`);
-Account2 = new BankAccountWithFee(9998.99, 9999.99, .99);
+const Account2 = new BankAccountWithFee(10, 25.00, 5.00);
 console.log(`Current Balance after fee: $${Account2.applyFee()}`);
+console.log(`Current balance after adding intrest rate: $${Account2.addIntrest()}`);
